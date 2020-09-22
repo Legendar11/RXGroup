@@ -7,36 +7,40 @@
     ViewBag.Title = "Редактировать книгу";
 }
 
-@using (Html.BeginForm(nameof(BooksController.Edit), "Books", FormMethod.Post))
+@using (Html.BeginForm(nameof(BooksController.Edit), "Books", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
+    @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    <fieldset>
-        @Html.HiddenFor(m => m.Id)
-        <p>
-            @Html.LabelFor(m => m.Name, "Название книги")
-            @Html.EditorFor(m => m.Name)
+    @Html.HiddenFor(m => m.Id)
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name, "Название книги", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.Name, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Name)
-        </p>
-        <br />
-        <p>
-            @Html.LabelFor(m => m.Author, "Автор")
-            @Html.EditorFor(m => m.Author)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Author, "Автор", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.Author, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Author)
-        </p>
-        <br />
-        <p>
-            @Html.LabelFor(m => m.Article, "Артикль")
-            @Html.EditorFor(m => m.Article)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Article, "Артикль", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.Article, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Article)
-        </p>
-        <br />
-        <p>
-            @Html.LabelFor(m => m.YearCreated, "Год издания")
-            @Html.EditorFor(m => m.YearCreated)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.YearCreated, "Год издания", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.YearCreated, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.YearCreated)
-        </p>
-        <br />
-        <p><input type="submit" value="Отправить" /></p>
-    </fieldset>
+        </div>
+    </div>
+    <p><input type="submit" value="Отправить" /></p>
 }

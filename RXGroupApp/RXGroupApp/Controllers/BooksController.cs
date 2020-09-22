@@ -42,6 +42,7 @@ namespace RXGroupApp.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(Book book)
         {
             if (!ModelState.IsValid)
@@ -69,6 +70,7 @@ namespace RXGroupApp.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(Book book)
         {
             if (!ModelState.IsValid)
