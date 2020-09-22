@@ -9,10 +9,12 @@
 
 <div>
     <h3>Книги</h3>
+    
+    <a href="@Url.Action(nameof(BooksController.Create), "Books")">Добавить новую книгу</a>
 
-    @using (Html.BeginForm(nameof(BooksController.Edit), "Books", FormMethod.Post))
+    @using (Html.BeginForm(nameof(BooksController.Filter), "Books", FormMethod.Post))
     {
-        <div>Фильтр:</div>@Html.TextBox("name", @ViewBag.FilterName);
+        <div>Фильтр:</div>@Html.TextBox("name", ViewBag.FilterName as string);
         <p><input type="submit" value="Применить" /></p>
     }
 

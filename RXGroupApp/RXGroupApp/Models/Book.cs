@@ -11,13 +11,16 @@ namespace RXGroupApp.Models
 
         [Index]
         [Display(Name = "Наименование")]
+        [StringLength(100)]
         public string Name { get; set; }
 
         [Required]
         [Display(Name = "Автор")]
+        [StringLength(100)]
         public string Author { get; set; }
 
         [Display(Name = "Артикль")]
+        [StringLength(20)]
         public string Article { get; set; }
 
         // TODO: хардкод текущего года, решение: создать свой атрибут

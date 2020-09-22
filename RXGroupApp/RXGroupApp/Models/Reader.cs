@@ -12,6 +12,7 @@ namespace RXGroupApp.Models
 
         [Index]
         [Display(Name = "ФИО")]
+        [StringLength(100)]
         public string Fio { get; set; }
 
         [Range(1, 2021)]

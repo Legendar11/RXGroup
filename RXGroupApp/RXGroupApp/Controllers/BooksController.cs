@@ -26,9 +26,34 @@ namespace RXGroupApp.Controllers
 
             using (var db = new LibraryDbContext())
             {
-                var books = await db.Books.Where(x => x.Name == name).ToListAsync();
+                var booksQuery = db.Books.AsQueryable();
+
+                if (!string.IsNullOrWhiteSpace(name))
+                    booksQuery = booksQuery.Where(x => x.Name == name);
+
+                var books = await booksQuery.ToListAsync();
                 return View(nameof(BooksController.Index), books);
             }
+        }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Create(Book book)
+        {
+            if (!ModelState.IsValid)
+                return View(book);
+
+            using (var db = new LibraryDbContext())
+            {
+                db.Books.Add(book);
+                await db.SaveChangesAsync();
+            }
+
+            return RedirectToAction(nameof(BooksController.Index));
         }
 
         public async Task<ActionResult> Edit(int id)
@@ -46,6 +71,9 @@ namespace RXGroupApp.Controllers
         [HttpPost]
         public async Task<ActionResult> Edit(Book book)
         {
+            if (!ModelState.IsValid)
+                return View(book);
+
             using (var db = new LibraryDbContext())
             {
                 db.Entry(book).State = EntityState.Modified;
