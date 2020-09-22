@@ -11,5 +11,6 @@ namespace RXGroupApp.DatabaseTools
 
         public DbSet<Book> Books { get; set; }
         public DbSet<Reader> Readers { get; set; }
+        public DbSet<IssueBook> IssueBooks { get; set; }
     }
 }

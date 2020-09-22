@@ -1,0 +1,37 @@
+﻿@using RXGroupApp.Models
+@using RXGroupApp.Controllers
+     
+@{
+    ViewBag.Title = "Выданные книги";
+}
+
+@model IEnumerable<IssueBook>
+
+<div>
+    <h3>Выданные книги</h3>
+    
+    <a href="@Url.Action(nameof(IssueBooksController.Create), "IssueBooks")">Выдать книгу</a>
+
+    <table class="table">
+        <thead class="thead-inverse">
+            <tr>
+                <td><p>Дата выдачи</p></td>
+                <td><p>Книга</p></td>
+                <td><p>Читатель</p></td>
+                <td><p>Количество дней</p></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var issueBook in Model)
+            {
+                <tr>
+                    <td><p>@issueBook.DateIssue</p></td>
+                    <td><p>@issueBook.Book.Name</p></td>
+                    <td><p>@issueBook.Reader.Fio</p></td>
+                    <td><p>@issueBook.CountDays</p></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
