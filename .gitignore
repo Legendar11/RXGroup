@@ -3,3 +3,9 @@
 ################################################################################
 
 /.vs/RXGroup/v15
+/RXGroupApp/.vs/RXGroupApp/v15
+/RXGroupApp/packages
+/RXGroupApp/RXGroupApp/bin
+/RXGroupApp/RXGroupApp/obj/Debug
+/.vs
+/RXGroupApp/.vs/config
