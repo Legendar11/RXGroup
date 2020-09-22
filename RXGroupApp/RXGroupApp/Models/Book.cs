@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RXGroupApp.Models
 {
+    // TODO: разграничить модели, перенести их на Data-слой и на UI-слой
     public class Book
     {
         [Key]

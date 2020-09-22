@@ -12,6 +12,7 @@ namespace RXGroupApp.Controllers
     {
         public async Task<ActionResult> Index()
         {
+            // TODO: определить фабрику инстанцирования контекста / перенести в DI-контейнер
             using (var db = new LibraryDbContext())
             {
                 var books = await db.Books.ToListAsync();

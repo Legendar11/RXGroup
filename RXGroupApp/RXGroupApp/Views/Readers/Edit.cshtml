@@ -1,0 +1,32 @@
+﻿@using RXGroupApp.Models
+@using RXGroupApp.Controllers
+
+@model Reader
+
+@{
+    ViewBag.Title = "Редактировать книгу";
+}
+
+@using (Html.BeginForm(nameof(ReadersController.Edit), "Readers", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(m => m.Id)
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Fio, "ФИО", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.Fio, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Fio)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.BirthDate, "Дата рождения", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.BirthDate, new { @class = "form-control", @textmode = "Date" })
+            @Html.ValidationMessageFor(m => m.BirthDate)
+        </div>
+    </div>
+    <p><input type="submit" value="Отправить" /></p>
+}

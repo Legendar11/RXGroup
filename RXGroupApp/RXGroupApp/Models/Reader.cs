@@ -14,9 +14,10 @@ namespace RXGroupApp.Models
         [Display(Name = "ФИО")]
         [StringLength(100)]
         public string Fio { get; set; }
-
-        [Range(1, 2021)]
+        
         [Display(Name = "Дата рождения")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
         public DateTime BirthDate { get; set; }
 
         public ICollection<IssueBook> IssueBooks { get; set; } = new List<IssueBook>();

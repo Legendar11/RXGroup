@@ -1,0 +1,43 @@
+﻿@using RXGroupApp.Models
+@using RXGroupApp.Controllers
+     
+@{
+    ViewBag.Title = "Index";
+}
+
+@model IEnumerable<Reader>
+
+<div>
+    <h3>Читатели</h3>
+    
+    <a href="@Url.Action(nameof(ReadersController.Create), "Readers")">Добавить нового читателя</a>
+
+    @using (Html.BeginForm(nameof(ReadersController.Filter), "Readers", FormMethod.Post))
+    {
+        <div>Фильтр:</div>@Html.TextBox("fio", ViewBag.FilterFio as string);
+        <p><input type="submit" value="Применить" /></p>
+    }
+
+    <table class="table">
+        <thead class="thead-inverse">
+            <tr>
+                <td><p>ФИО</p></td>
+                <td><p>дата рождения</p></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var reader in Model)
+            {
+                <tr>
+                    <td><p>@reader.Fio</p></td>
+                    <td><p>@reader.BirthDate.ToShortDateString()</p></td>
+                    <td><p><a href="@Url.Action(nameof(ReadersController.Edit), "Readers", new { reader.Id })">Редактировать</a></p></td>
+                    <td><p><a href="@Url.Action(nameof(ReadersController.Delete), "Readers", new { reader.Id })">Удалить</a></p></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
