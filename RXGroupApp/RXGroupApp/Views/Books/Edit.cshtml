@@ -1,0 +1,34 @@
+﻿@using RXGroupApp.Models
+@using RXGroupApp.Controllers
+
+@model Book
+
+@{
+    ViewBag.Title = "Редактировать книгу";
+}
+
+
+@using (Html.BeginForm(nameof(BooksController.Edit), "Books", FormMethod.Post))
+{
+<fieldset>
+    @Html.HiddenFor(m => m.Id)
+    <p>
+        @Html.LabelFor(m => m.Name, "Название книги")
+        @Html.EditorFor(m => m.Name)
+    </p>
+    <p>
+        @Html.LabelFor(m => m.Author, "Автор")
+        @Html.EditorFor(m => m.Author)
+
+    </p>
+    <p>
+        @Html.LabelFor(m => m.Article, "Артикль")
+        @Html.EditorFor(m => m.Article)
+    </p>
+    <p>
+        @Html.LabelFor(m => m.YearCreated, "Год издания")
+        @Html.EditorFor(m => m.YearCreated)
+    </p>
+    <p><input type="submit" value="Отправить" /></p>
+</fieldset>
+}

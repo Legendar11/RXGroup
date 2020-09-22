@@ -1,0 +1,41 @@
+﻿@using RXGroupApp.Models
+@using RXGroupApp.Controllers
+     
+@{
+    ViewBag.Title = "Index";
+}
+
+@model IEnumerable<Book>
+
+<div>
+    <h3>Книги</h3>
+
+    @using (Html.BeginForm(nameof(BooksController.Edit), "Books", FormMethod.Post))
+    {
+        <div>Фильтр:</div>@Html.TextBox("name", @ViewBag.FilterName);
+        <p><input type="submit" value="Применить" /></p>
+    }
+
+    <table>
+        <tr>
+            <td><p>Название книги</p></td>
+            <td><p>Автор</p></td>
+            <td><p>Артикль</p></td>
+            <td><p>Год издания</p></td>
+            <td></td>
+            <td></td>
+        </tr>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td><p>@book.Name</p></td>
+                <td><p>@book.Author</p></td>
+                <td><p>@book.Article</p></td>
+                <td><p>@book.YearCreated</p></td>
+                <td><p><a href="@Url.Action(nameof(BooksController.Edit), "Books", new { book.Id })">Редактировать</a></p></td>
+                <td><p><a href="@Url.Action(nameof(BooksController.Delete), "Books", new { book.Id })">Удалить</a></p></td>
+            </tr>
+        }
+    </table>
+</div>
+
